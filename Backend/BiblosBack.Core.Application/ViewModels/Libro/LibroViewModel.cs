@@ -1,11 +1,13 @@
-﻿using BiblosBack.Core.Domain.Entities;
+﻿using BiblosBack.Core.Application.ViewModels.Autor;
+using BiblosBack.Core.Application.ViewModels.Editorial;
+using BiblosBack.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiblosBack.Core.Application.ViewModels.Autor
+namespace BiblosBack.Core.Application.ViewModels.Libro
 {
     public class LibroViewModel : BaseViewModel
     {

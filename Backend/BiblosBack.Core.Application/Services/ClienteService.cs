@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BiblosBack.Core.Application.Interfaces.Repositories;
 using BiblosBack.Core.Application.Interfaces.Services;
-using BiblosBack.Core.Application.ViewModels.Autor;
+using BiblosBack.Core.Application.ViewModels.Cliente;
 using BiblosBack.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace BiblosBack.Core.Application.Services
 {
-    public class AutorService : GenericService<Autor, AutorViewModel, SaveAutorViewModel>, IAutorService
+    public class ClienteService : GenericService<Cliente, ClienteViewModel, SaveClienteViewModel>, IClienteService
     {
-        private readonly IAutorRepository _autorRepository;
+        private readonly IClienteRepository _clienteRepository;
         private readonly IMapper _mapper;
 
-        public AutorService(IAutorRepository autorRepository, IMapper mapper) : base(autorRepository, mapper)
+        public ClienteService(IClienteRepository ClienteRepository, IMapper mapper) : base(ClienteRepository, mapper)
         {
-            _autorRepository = autorRepository;
+            _clienteRepository = ClienteRepository;
             _mapper = mapper;
         }
     }

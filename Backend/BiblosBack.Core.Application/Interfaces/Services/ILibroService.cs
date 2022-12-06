@@ -6,12 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiblosBack.Core.Application.ViewModels.Editorial
+namespace BiblosBack.Core.Application.Interfaces.Services
 {
-    public class EditorialViewModel : BaseViewModel
+    public interface ILibroService : IGenericService<Libro, LibroViewModel, SaveLibroViewModel>
     {
-        public string Nombre { get; set; }
-
-        public ICollection<LibroViewModel> Libros { get; set; }
     }
 }

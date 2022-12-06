@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiblosBack.Core.Application.ViewModels.Autor
+namespace BiblosBack.Core.Application.ViewModels.Libro
 {
     public class SaveLibroViewModel
     {
