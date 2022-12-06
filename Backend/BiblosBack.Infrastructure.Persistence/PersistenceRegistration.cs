@@ -23,6 +23,10 @@ namespace BiblosBack.Infrastructure.Persistence
 
             //Here dependency injection
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IAutorRepository, AutorRepository>();
+            services.AddTransient<IClienteRepository,ClienteRepository>();
+            services.AddTransient<IEditorialRepository, EditorialRepository>();
+            services.AddTransient<ILibroRepository, LibroRepository>();
         }
     }
 }
