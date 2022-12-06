@@ -17,6 +17,10 @@ namespace BiblosBack.Core.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IGenericService<,,>), typeof(GenericService<,,>));
+            services.AddTransient<IAutorService, AutorService>();
+            services.AddTransient<IClienteService, ClienteService>();
+            services.AddTransient<IEditorialService, EditorialService>();
+            services.AddTransient<ILibroService, LibroService>();
         }
     }
 }
