@@ -10,5 +10,9 @@ namespace BiblosBack.Core.Domain.Entities
     public class Editorial : BaseEntity
     {
         public string Nombre { get; set; }
+
+        #region relationships
+        public ICollection<Libro> Libros { get; set; }
+        #endregion
     }
 }
