@@ -1,9 +1,11 @@
-﻿using BiblosBack.Core.Domain.Entities;
+﻿using BiblosBack.Core.Domain.Common;
+using BiblosBack.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BiblosBack.Infrastructure.Persistence.Contexts
@@ -11,6 +13,27 @@ namespace BiblosBack.Infrastructure.Persistence.Contexts
     public class BiblosBackContext:DbContext
     {
         public BiblosBackContext(DbContextOptions<BiblosBackContext> options):base(options) { }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.Entity.FechaModificacion = DateTime.Now;
+                        entry.Entity.ModificadoPor ="SISTEMA";
+                        break;
+                    case EntityState.Added:
+                        entry.Entity.FechaCreacion = DateTime.Now;
+                        entry.Entity.CreadoPor = "SISTEMA";
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
 
         public DbSet<Autor> Autores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }

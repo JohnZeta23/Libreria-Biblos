@@ -32,11 +32,10 @@ namespace BiblosBack.Core.Application.Services
             return vm;
         }
 
-        public virtual async Task<ViewModel> Update(SaveViewModel saveVM, int id)
+        public virtual async Task<bool> Update(SaveViewModel saveVM, int id)
         {
             Entity entity = _mapper.Map<Entity>(saveVM);
-            var vm = await _repo.UpdateAsync(entity, id);
-            return _mapper.Map<ViewModel>(vm);
+            return await _repo.UpdateAsync(entity, id);
         }
 
         public virtual async Task<List<ViewModel>> GetAllViewModel()
@@ -59,10 +58,18 @@ namespace BiblosBack.Core.Application.Services
             return vm;
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task<bool> Delete(int id)
         {
             Entity entity = await _repo.GetByIdAsync(id);
-            await _repo.DeleteAsync(entity);
+            return await _repo.DeleteAsync(entity);
         }
+
+        public virtual async Task<List<ViewModel>> GetAllViewModelRelation(List<string> properties)
+        {
+            var entities = await _repo.GetAllWithIncludesAsync(properties);
+            return _mapper.Map<List<ViewModel>>(entities);
+        }
+
+
     }
 }

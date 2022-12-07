@@ -8,6 +8,7 @@ namespace BiblosBack.Core.Application.ViewModels.Libro
 {
     public class SaveLibroViewModel
     {
+        public int Id{ get; set; }
         public string Nombre { get; set; }
         public string Codigo { get; set; }
         public DateTime Publicacion { get; set; }

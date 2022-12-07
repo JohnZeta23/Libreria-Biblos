@@ -22,7 +22,6 @@ namespace BiblosBack.Core.Application.Mappings
 
             CreateMap<Autor, SaveAutorViewModel>()
                 .ReverseMap()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Libros, opt => opt.Ignore())
                 .ForMember(dest => dest.FechaCreacion, opt => opt.Ignore())
                 .ForMember(dest => dest.CreadoPor, opt => opt.Ignore())
@@ -37,7 +36,6 @@ namespace BiblosBack.Core.Application.Mappings
 
             CreateMap<Cliente, SaveClienteViewModel>()
                 .ReverseMap()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.FechaCreacion, opt => opt.Ignore())
                 .ForMember(dest => dest.CreadoPor, opt => opt.Ignore())
                 .ForMember(dest => dest.FechaModificacion, opt => opt.Ignore())
@@ -51,7 +49,6 @@ namespace BiblosBack.Core.Application.Mappings
 
             CreateMap<Editorial, SaveEditorialViewModel>()
                 .ReverseMap()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Libros, opt => opt.Ignore())
                 .ForMember(dest => dest.FechaCreacion, opt => opt.Ignore())
                 .ForMember(dest => dest.CreadoPor, opt => opt.Ignore())
@@ -65,8 +62,7 @@ namespace BiblosBack.Core.Application.Mappings
                 .ReverseMap();
 
             CreateMap<Libro, SaveLibroViewModel>()
-                .ReverseMap()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ReverseMap()                
                 .ForMember(dest => dest.Editorial, opt => opt.Ignore())
                 .ForMember(dest => dest.Autor, opt => opt.Ignore())
                 .ForMember(dest => dest.FechaCreacion, opt => opt.Ignore())
