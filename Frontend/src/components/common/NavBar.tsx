@@ -22,14 +22,7 @@ const NavBar: React.FC = (): JSX.Element => {
   const navigateTo: NavigateFunction = useNavigate();
 
   return (
-    <Flex
-      w="100%"
-      py={5}
-      px={10}
-      align="center"
-      bgColor="yellow.200"
-      opacity={0.8}
-    >
+    <Flex w="100%" py={5} px={10} align="center" bgColor="yellow.200">
       <Flex justify="center" align="center" gap={5}>
         <Image src="" w="40px" data-aos="zoom-out" data-aos-duration={2000} />
         <Heading size="md" data-aos="zoom-out" data-aos-duration={2000}>
