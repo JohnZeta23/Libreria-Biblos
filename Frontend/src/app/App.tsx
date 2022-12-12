@@ -4,14 +4,16 @@ import "../assets/css/App.css";
 import Router from "../routes/Routes";
 
 // Chakra UI
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Box } from "@chakra-ui/react";
 import NavBar from "./../components/common/NavBar";
 
 function App() {
   return (
     <ChakraProvider>
-      <NavBar />
-      <Router />
+      <Box bg={"#e5e5e5"} h="100vh" maxW="100vw">
+        <NavBar />
+        <Router />
+      </Box>
     </ChakraProvider>
   );
 }
