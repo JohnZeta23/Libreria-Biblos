@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiblosBack.Core.Domain.Common
+namespace BiblosBack.Core.Application.ViewModels
 {
-    public class BaseEntity
+    public class BaseViewModel
     {
         public int Id { get; set; }
         public DateTime FechaCreacion { get; set; }

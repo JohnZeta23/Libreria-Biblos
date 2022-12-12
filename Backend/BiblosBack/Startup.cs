@@ -1,4 +1,7 @@
+using BiblosBack.Controllers;
 using BiblosBack.Core.Application;
+using BiblosBack.Core.Application.Interfaces.Services;
+using BiblosBack.Core.Application.Services;
 using BiblosBack.Extensions;
 using BiblosBack.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -29,8 +32,12 @@ namespace BiblosBack
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.AddControllers();
+
             services.AddPersistenceInfrastructure(Configuration);
             services.AddApplicationLayer();
+
 
             services.AddSwaggerExtension();
             services.AddApiVersioningExtension();
@@ -49,12 +56,15 @@ namespace BiblosBack
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
                 app.UseExceptionHandler("/Error");
                 app.UseHttpMethodOverride();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseRouting();

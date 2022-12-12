@@ -19,24 +19,22 @@ namespace BiblosBack.Infrastructure.Persistence.Repositories
 
         public virtual async Task<Entity> AddAsync(Entity entity)
         {
-            await _dbContext.AddAsync(entity);
+            await _dbContext.Set<Entity>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<Entity> UpdateAsync(Entity entity, int id)
+        public async Task<bool> UpdateAsync(Entity entity, int id)
         {
             Entity entry = await _dbContext.Set<Entity>().FindAsync(id);
             _dbContext.Entry(entry).CurrentValues.SetValues(entity);
-            await _dbContext.SaveChangesAsync();
-
-            return entry;
+            return await Save();
         }
 
-        public async Task DeleteAsync(Entity entity)
+        public async Task<bool> DeleteAsync(Entity entity)
         {
             _dbContext.Set<Entity>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            return await Save();
         }
 
         public async Task<List<Entity>> GetAllAsync()
@@ -78,6 +76,11 @@ namespace BiblosBack.Infrastructure.Persistence.Repositories
             }
 
             return query;
+        }
+
+        private async Task<bool> Save()
+        {
+            return await _dbContext.SaveChangesAsync() >= 0 ? true : false;
         }
     }
 }
