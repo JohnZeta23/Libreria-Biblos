@@ -9,17 +9,19 @@ import {
   Text,
   CardFooter,
   Button,
+  Box,
 } from "@chakra-ui/react";
 
-type Props = {};
+import { iBook } from "../../models/BookSchema";
 
-function BookCard({}: Props) {
+type Props = {
+  books: iBook | undefined;
+};
+
+function BookCard({ books }: Props) {
   return (
-    <SimpleGrid
-      spacing={3}
-      templateColumns="repeat(auto-fill, minmax(600px, 1fr))"
-      m={10}
-    >
+    books &&
+    books.map((book: iBook) => (
       <Card
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
@@ -30,25 +32,32 @@ function BookCard({}: Props) {
         <Image
           objectFit="cover"
           maxW={{ base: "100%", sm: "200px" }}
-          src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+          src="https://ashmagautam.files.wordpress.com/2013/11/mcj038257400001.jpg"
           alt="Caffe Latte"
         />
 
         <Stack>
           <CardBody>
-            <Heading size="md">Book name</Heading>
+            <Heading size="md">{book.nombre}</Heading>
 
-            <Text py="2">Book Description</Text>
-          </CardBody>
+            <Text color="blue.600" fontSize="2xl" mt={2}>
+              ${book.precio}
+            </Text>
 
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Buy Latte
+            <Box display="flex" alignItems="center" gap={3} mt={2}>
+              <Text color="gray" fontWeight="bold">
+                En Stock:{" "}
+              </Text>
+              <Text fontWeight="semibold">{book.stock}</Text>
+            </Box>
+
+            <Button variant="solid" colorScheme="blue" my={5}>
+              Comprar
             </Button>
-          </CardFooter>
+          </CardBody>
         </Stack>
       </Card>
-    </SimpleGrid>
+    ))
   );
 }
 

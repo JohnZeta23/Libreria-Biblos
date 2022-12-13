@@ -2,18 +2,15 @@ import React from "react";
 
 // React
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { BsFillHouseDoorFill, BsFillFileCodeFill } from "react-icons/bs";
+import {
+  BsFillHouseDoorFill,
+  BsFillSave2Fill,
+  BsPersonLinesFill,
+  BsFillBookmarksFill,
+} from "react-icons/bs";
 
 // Chakra
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Spacer,
-  useMediaQuery,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Spacer, Image } from "@chakra-ui/react";
 
 // Components
 import Menu from "./Menu";
@@ -46,11 +43,31 @@ const NavBar: React.FC = (): JSX.Element => {
           className="smoothjump"
           colorScheme="white"
           variant="ghost"
-          leftIcon={<BsFillFileCodeFill />}
+          leftIcon={<BsFillBookmarksFill />}
           ml={3}
           onClick={() => navigateTo("books")}
         >
           Libros
+        </Button>
+        <Button
+          className="smoothjump"
+          colorScheme="white"
+          variant="ghost"
+          leftIcon={<BsPersonLinesFill />}
+          ml={3}
+          onClick={() => navigateTo("authors")}
+        >
+          Autores
+        </Button>
+        <Button
+          className="smoothjump"
+          colorScheme="white"
+          variant="ghost"
+          leftIcon={<BsFillSave2Fill />}
+          ml={3}
+          onClick={() => navigateTo("publishers")}
+        >
+          Editoriales
         </Button>
       </Box>
     </Flex>

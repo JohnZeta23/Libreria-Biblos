@@ -32,7 +32,9 @@ namespace BiblosBack
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy",
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
             services.AddControllers();
 
             services.AddPersistenceInfrastructure(Configuration);
@@ -46,8 +48,6 @@ namespace BiblosBack
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddHealthChecks();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +64,7 @@ namespace BiblosBack
                 app.UseHttpMethodOverride();
             }
 
-            app.UseCors();
+            app.UseCors("ApiCorsPolicy"); 
 
             app.UseHttpsRedirection();
             app.UseRouting();
